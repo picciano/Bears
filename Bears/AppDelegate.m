@@ -7,13 +7,21 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    [Parse setApplicationId:@"GRUgA9n7ZWptzN3cP6pWJfTVvWFBqjTzS1a2ZQtz"
+                  clientKey:@"0sHyGSDMgILzShPpa2xjPmBgLlIXo6oXyMio7XbY"];
+    
+    MainViewController *viewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+    self.window.rootViewController = viewController;
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
