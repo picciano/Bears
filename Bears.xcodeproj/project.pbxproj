@@ -492,7 +492,7 @@
 				GCC_PREFIX_HEADER = "Bears/Bears-Prefix.pch";
 				INFOPLIST_FILE = "Bears/Bears-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e6bbc16-6d39-44fa-889d-a681c8d4e546";
+				PROVISIONING_PROFILE = "9f8addd2-27a3-4c96-8aba-7f2c998fd90a";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
