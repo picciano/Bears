@@ -185,6 +185,11 @@ NSString * const kReuseIdentifier = @"reuseIdentifier";
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self updateDisplay];
+    
+    // Store the user in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    currentInstallation[@"user"] = [PFUser currentUser];
+    [currentInstallation saveInBackground];
 }
 
 - (void)logInViewControllerDidCancelLogIn:(PFLogInViewController *)logInController

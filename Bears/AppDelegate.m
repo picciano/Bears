@@ -76,7 +76,10 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     
     // Associate the device with a user
-    currentInstallation[@"user"] = [PFUser currentUser];
+    if ([PFUser currentUser])
+    {
+        currentInstallation[@"user"] = [PFUser currentUser];
+    }
     
     [currentInstallation saveInBackground];
 }
