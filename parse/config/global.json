@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "Bears": {
+            "applicationId": "GRUgA9n7ZWptzN3cP6pWJfTVvWFBqjTzS1a2ZQtz", 
+            "masterKey": "NGITHr1ydJIQeWmmchmIWe8SO1aF6PGoxY9eS7mW"
+        }, 
+        "_default": {
+            "link": "Bears"
+        }
+    }
+}
