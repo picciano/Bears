@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
             <connections>
+                <outlet property="bearsButton" destination="9wj-10-hHF" id="tMB-DT-ht9"/>
                 <outlet property="logoutButton" destination="1Mb-8v-ZiW" id="eqA-1p-bFF"/>
                 <outlet property="usernameLabel" destination="e5r-HP-rEC" id="Zkw-Yr-fbo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,6 +33,18 @@
                     </state>
                     <connections>
                         <action selector="logout:" destination="-1" eventType="touchUpInside" id="ZBe-hy-SR8"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9wj-10-hHF">
+                    <rect key="frame" x="80" y="86" width="161" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="48"/>
+                    <state key="normal" title="BEARS">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="bears:" destination="-1" eventType="touchUpInside" id="SdJ-ib-iiF"/>
                     </connections>
                 </button>
             </subviews>

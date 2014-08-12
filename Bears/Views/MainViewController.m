@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *logoutButton;
+@property (nonatomic, weak) IBOutlet UIButton *bearsButton;
 
 @end
 
@@ -46,11 +47,13 @@
         self.usernameLabel.text = [[[PFUser currentUser] username] uppercaseString];
         self.usernameLabel.hidden = NO;
         self.logoutButton.hidden = NO;
+        self.bearsButton.hidden = NO;
     }
     else
     {
         self.usernameLabel.hidden = YES;
         self.logoutButton.hidden = YES;
+        self.bearsButton.hidden = YES;
         [self logInOrCreateAccount];
     }
 }
@@ -59,6 +62,17 @@
 {
     [PFUser logOut];
     [self updateDisplay];
+}
+
+- (IBAction)bears:(id)sender
+{
+    [PFCloud callFunctionInBackground:@"bears"
+                       withParameters:@{}
+                                block:^(NSString *result, NSError *error) {
+                                    if (!error) {
+                                        NSLog(@"Result: %@", result);
+                                    }
+                                }];
 }
 
 - (void)logInOrCreateAccount
