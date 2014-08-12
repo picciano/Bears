@@ -48,7 +48,9 @@
             if (object)
             {
                 [object addUniqueObject:friend forKey:@"friends"];
-                [object saveInBackground];
+                [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendsUpdated" object:self];
+                }];
             }
             else
             {
