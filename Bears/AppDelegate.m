@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSURL+QueryString.h"
 #import "MainViewController.h"
 #import <Parse/Parse.h>
 
@@ -31,11 +32,35 @@
     return YES;
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSLog(@"Openned URL: %@", url);
+    if ([PFUser currentUser])
+    {
+        NSString *user = [url queryStringValueForKey:@"user"];
+        NSLog(@"Adding friend: %@", user);
+        
+        PFUser *friend = [PFUser objectWithoutDataWithObjectId:user];
+        [[PFUser currentUser] addUniqueObject:friend forKey:@"friends"];
+        [[PFUser currentUser] saveInBackground];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"BEARS" message:@"You need to be logged in before accepting an invitation." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [alertView show];
+    }
+    return YES;
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // Store the deviceToken in the current installation and save it to Parse.
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
+    
+    // Associate the device with a user
+    currentInstallation[@"user"] = [PFUser currentUser];
+    
     [currentInstallation saveInBackground];
 }
 

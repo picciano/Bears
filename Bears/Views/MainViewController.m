@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *logoutButton;
 @property (nonatomic, weak) IBOutlet UIButton *bearsButton;
+@property (nonatomic, weak) IBOutlet UIButton *inviteButton;
 
 @end
 
@@ -48,12 +49,14 @@
         self.usernameLabel.hidden = NO;
         self.logoutButton.hidden = NO;
         self.bearsButton.hidden = NO;
+        self.inviteButton.hidden = NO;
     }
     else
     {
         self.usernameLabel.hidden = YES;
         self.logoutButton.hidden = YES;
         self.bearsButton.hidden = YES;
+        self.inviteButton.hidden = YES;
         [self logInOrCreateAccount];
     }
 }
@@ -64,10 +67,42 @@
     [self updateDisplay];
 }
 
+- (IBAction)invite:(id)sender
+{
+    if ([MFMailComposeViewController canSendMail])
+    {
+        // Show the composer
+        MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+        controller.mailComposeDelegate = self;
+        [controller setSubject:@"BEARS"];
+        
+        NSString *link = [NSString stringWithFormat:@"bears://?user=%@",[PFUser currentUser].objectId];
+        NSString *message = [NSString stringWithFormat:@"<p>Hello there.</p><p>Add me to your <a href=\"%@\">BEARS list</a>.</p><p>Don't have BEARS, get it here.</p>", link];
+        
+        [controller setMessageBody:message isHTML:YES];
+        if (controller) [self presentViewController:controller animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"BEARS" message:@"You need to set up email before sending an invitation." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+        [alertView show];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)bears:(id)sender
 {
     [PFCloud callFunctionInBackground:@"bears"
-                       withParameters:@{}
+                       withParameters:@{ @"recipient" : [PFUser currentUser].objectId}
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         NSLog(@"Result: %@", result);

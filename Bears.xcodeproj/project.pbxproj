@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E402549A199A8BAC0028962F /* NSURL+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = E4025499199A8BAC0028962F /* NSURL+QueryString.m */; };
 		E440663019996EBC00AB5118 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E440662F19996EBC00AB5118 /* Foundation.framework */; };
 		E440663219996EBC00AB5118 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E440663119996EBC00AB5118 /* CoreGraphics.framework */; };
 		E440663419996EBC00AB5118 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E440663319996EBC00AB5118 /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E4025498199A8BAC0028962F /* NSURL+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+QueryString.h"; path = "Categories/NSURL+QueryString.h"; sourceTree = "<group>"; };
+		E4025499199A8BAC0028962F /* NSURL+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+QueryString.m"; path = "Categories/NSURL+QueryString.m"; sourceTree = "<group>"; };
 		E440662C19996EBC00AB5118 /* Bears.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bears.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E440662F19996EBC00AB5118 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E440663119996EBC00AB5118 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -115,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4025497199A8B7C0028962F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E4025498199A8BAC0028962F /* NSURL+QueryString.h */,
+				E4025499199A8BAC0028962F /* NSURL+QueryString.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		E440662319996EBC00AB5118 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +174,7 @@
 			children = (
 				E440663E19996EBC00AB5118 /* AppDelegate.h */,
 				E440663F19996EBC00AB5118 /* AppDelegate.m */,
+				E4025497199A8B7C0028962F /* Categories */,
 				E440665E19996EC900AB5118 /* Views */,
 				E440664119996EBC00AB5118 /* Images.xcassets */,
 				E440663619996EBC00AB5118 /* Supporting Files */,
@@ -323,6 +336,7 @@
 			files = (
 				E440664019996EBC00AB5118 /* AppDelegate.m in Sources */,
 				E440666219996EEC00AB5118 /* MainViewController.m in Sources */,
+				E402549A199A8BAC0028962F /* NSURL+QueryString.m in Sources */,
 				E440663C19996EBC00AB5118 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
