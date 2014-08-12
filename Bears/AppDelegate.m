@@ -41,8 +41,25 @@
         NSLog(@"Adding friend: %@", user);
         
         PFUser *friend = [PFUser objectWithoutDataWithObjectId:user];
-        [[PFUser currentUser] addUniqueObject:friend forKey:@"friends"];
-        [[PFUser currentUser] saveInBackground];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Friends"];
+        [query whereKey:@"user" equalTo:[PFUser currentUser]];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+            if (object)
+            {
+                [object addUniqueObject:friend forKey:@"friends"];
+                [object saveInBackground];
+            }
+            else
+            {
+                PFObject *friends = [PFObject objectWithClassName:@"Friends"];
+                [friends setObject:[PFUser currentUser] forKey:@"user"];
+                [friends addUniqueObject:friend forKey:@"friends"];
+                [friends saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"friendsUpdated" object:self];
+                }];
+            }
+        }];
     }
     else
     {

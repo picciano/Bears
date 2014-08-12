@@ -10,6 +10,6 @@
 #import <Parse/Parse.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface MainViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface MainViewController : UIViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate, MFMailComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

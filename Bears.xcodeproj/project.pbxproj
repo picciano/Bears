@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E402549A199A8BAC0028962F /* NSURL+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = E4025499199A8BAC0028962F /* NSURL+QueryString.m */; };
+		E40254DE199AB7500028962F /* FriendCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E40254DC199AB7500028962F /* FriendCellTableViewCell.m */; };
+		E40254DF199AB7500028962F /* FriendCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E40254DD199AB7500028962F /* FriendCellTableViewCell.xib */; };
 		E440663019996EBC00AB5118 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E440662F19996EBC00AB5118 /* Foundation.framework */; };
 		E440663219996EBC00AB5118 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E440663119996EBC00AB5118 /* CoreGraphics.framework */; };
 		E440663419996EBC00AB5118 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E440663319996EBC00AB5118 /* UIKit.framework */; };
@@ -49,6 +51,9 @@
 /* Begin PBXFileReference section */
 		E4025498199A8BAC0028962F /* NSURL+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+QueryString.h"; path = "Categories/NSURL+QueryString.h"; sourceTree = "<group>"; };
 		E4025499199A8BAC0028962F /* NSURL+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+QueryString.m"; path = "Categories/NSURL+QueryString.m"; sourceTree = "<group>"; };
+		E40254DB199AB7500028962F /* FriendCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendCellTableViewCell.h; path = Views/FriendCellTableViewCell.h; sourceTree = "<group>"; };
+		E40254DC199AB7500028962F /* FriendCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendCellTableViewCell.m; path = Views/FriendCellTableViewCell.m; sourceTree = "<group>"; };
+		E40254DD199AB7500028962F /* FriendCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FriendCellTableViewCell.xib; path = Views/FriendCellTableViewCell.xib; sourceTree = "<group>"; };
 		E440662C19996EBC00AB5118 /* Bears.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bears.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E440662F19996EBC00AB5118 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E440663119996EBC00AB5118 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -217,6 +222,9 @@
 				E440665F19996EEC00AB5118 /* MainViewController.h */,
 				E440666019996EEC00AB5118 /* MainViewController.m */,
 				E440666119996EEC00AB5118 /* MainViewController.xib */,
+				E40254DB199AB7500028962F /* FriendCellTableViewCell.h */,
+				E40254DC199AB7500028962F /* FriendCellTableViewCell.m */,
+				E40254DD199AB7500028962F /* FriendCellTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -300,6 +308,7 @@
 				E440663A19996EBC00AB5118 /* InfoPlist.strings in Resources */,
 				E440666319996EEC00AB5118 /* MainViewController.xib in Resources */,
 				E440664219996EBC00AB5118 /* Images.xcassets in Resources */,
+				E40254DF199AB7500028962F /* FriendCellTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +347,7 @@
 				E440666219996EEC00AB5118 /* MainViewController.m in Sources */,
 				E402549A199A8BAC0028962F /* NSURL+QueryString.m in Sources */,
 				E440663C19996EBC00AB5118 /* main.m in Sources */,
+				E40254DE199AB7500028962F /* FriendCellTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

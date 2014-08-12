@@ -7,17 +7,22 @@
 //
 
 #import "MainViewController.h"
+#import "FriendCellTableViewCell.h"
 
 @interface MainViewController ()
 
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 @property (nonatomic, weak) IBOutlet UIButton *logoutButton;
-@property (nonatomic, weak) IBOutlet UIButton *bearsButton;
 @property (nonatomic, weak) IBOutlet UIButton *inviteButton;
+
+@property (nonatomic, strong) NSArray *friends;
 
 @end
 
 @implementation MainViewController
+
+NSString * const kReuseIdentifier = @"reuseIdentifier";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,9 +33,18 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [self.tableView registerNib:[UINib nibWithNibName:@"FriendCellTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kReuseIdentifier];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"friendsUpdated" object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self updateDisplay];
+    [self loadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -41,6 +55,31 @@
     }
 }
 
+- (void)loadData
+{
+    if (![PFUser currentUser])
+    {
+        return;
+    }
+    
+    // load data
+    PFQuery *query = [PFQuery queryWithClassName:@"Friends"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query includeKey:@"friends"];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (object)
+        {
+            self.friends = object[@"friends"];
+        }
+        else
+        {
+            self.friends = [NSArray array];
+        }
+        
+        [self.tableView reloadData];
+    }];
+}
+
 - (void)updateDisplay
 {
     if ([PFUser currentUser])
@@ -48,14 +87,12 @@
         self.usernameLabel.text = [[[PFUser currentUser] username] uppercaseString];
         self.usernameLabel.hidden = NO;
         self.logoutButton.hidden = NO;
-        self.bearsButton.hidden = NO;
         self.inviteButton.hidden = NO;
     }
     else
     {
         self.usernameLabel.hidden = YES;
         self.logoutButton.hidden = YES;
-        self.bearsButton.hidden = YES;
         self.inviteButton.hidden = YES;
         [self logInOrCreateAccount];
     }
@@ -93,16 +130,17 @@
           didFinishWithResult:(MFMailComposeResult)result
                         error:(NSError*)error;
 {
-    if (result == MFMailComposeResultSent) {
+    if (result == MFMailComposeResultSent)
+    {
         NSLog(@"It's away!");
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)bears:(id)sender
+- (void)sendBear:(NSString *)recipient
 {
     [PFCloud callFunctionInBackground:@"bears"
-                       withParameters:@{ @"recipient" : [PFUser currentUser].objectId}
+                       withParameters:@{ @"recipient" : recipient }
                                 block:^(NSString *result, NSError *error) {
                                     if (!error) {
                                         NSLog(@"Result: %@", result);
@@ -165,6 +203,35 @@
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     [self updateDisplay];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (self.friends)
+    {
+        return self.friends.count;
+    }
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    FriendCellTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kReuseIdentifier forIndexPath:indexPath];
+    
+    PFUser *user = [self.friends objectAtIndex:indexPath.row];
+    [user fetchIfNeeded];
+    
+    cell.usernameLabel.text = [user.username uppercaseString];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PFUser *recipient = [self.friends objectAtIndex:indexPath.row];
+    [self sendBear:recipient.objectId];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
