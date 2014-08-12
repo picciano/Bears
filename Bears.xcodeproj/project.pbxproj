@@ -440,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Anthony Picciano (RBB6ZN26A7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -448,6 +449,7 @@
 				GCC_PREFIX_HEADER = "Bears/Bears-Prefix.pch";
 				INFOPLIST_FILE = "Bears/Bears-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b374fd97-a541-4573-bfd5-5a117597d777";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -457,6 +459,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Anthony Picciano (PC5SP4V242)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -465,6 +468,7 @@
 				GCC_PREFIX_HEADER = "Bears/Bears-Prefix.pch";
 				INFOPLIST_FILE = "Bears/Bears-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4e6bbc16-6d39-44fa-889d-a681c8d4e546";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
