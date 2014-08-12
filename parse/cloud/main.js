@@ -10,7 +10,7 @@ Parse.Cloud.define("hello", function(request, response)
 Parse.Cloud.define("bears", function(request, response)
 {	
 	var currentUser = request.user;
-	var recipientId = request.params.recipient;
+	var recipient = request.params.recipient;
 	
 	if (!currentUser)
 	{
@@ -18,14 +18,14 @@ Parse.Cloud.define("bears", function(request, response)
 		return;
 	}
 	
-	if (!recipientId)
+	if (!recipient)
 	{
 		response.error("Must specify recipient.");
 		return;
 	}
 	
 	var userQuery = new Parse.Query(Parse.User);
-	userQuery.equalTo('objectId', recipientId);
+	userQuery.equalTo('objectId', recipient);
 	
 	var pushQuery = new Parse.Query(Parse.Installation);
 	pushQuery.matchesQuery('user', userQuery);
@@ -38,7 +38,7 @@ Parse.Cloud.define("bears", function(request, response)
 		}
 	}, {
 		success: function() {
-			response.success("Hello " + request.user.get("username"));
+			response.success("Push sent to " + recipient + " from " + request.user.get("username"));
 		},
 		error: function(error) {
 			response.error(error.message)
