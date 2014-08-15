@@ -1,0 +1,75 @@
+// 03._pages.scss
+
+@import "_modules/_variables.scss";
+@import "_modules/_mixins.scss";
+@import "_modules/_animations.scss";
+
+@import "compass/css3/opacity";
+
+
+/********************************************************** Layout */
+
+header {
+  padding-top: $space *2;
+}
+
+h2 {
+  padding: $space/2 0;
+
+  @include mq($M) {
+    padding: $space/3 0;
+  }
+
+  @include mq($L) {
+    padding: $space/4 0;
+  }
+}
+
+.app-store {
+  display: inline-block;
+  margin: $space 0;
+}
+
+img {
+  width: 50%;
+
+  @include mq($S) {
+    width: 75%;
+    padding: 10px;
+  }
+
+  @include mq($M) {
+    width: 100%;
+  }
+}
+
+nav a {
+  display: inline-block;
+  font-size: $font-size-4;
+  width: 100%;
+  margin: $space/4 0;
+  padding: $space /4;
+
+  @include mq($S) {
+    font-size: $font-size-3;
+    width: auto;
+    margin: $space/2 0;
+    padding: $space /2;
+  }
+
+  @include mq($M) {
+    padding-right: $space;
+    padding-left: $space;
+  }
+}
+
+
+footer {
+  padding-top: 1em;
+
+  p {
+    @include opacity(.8);
+    font-size: $font-size-6;
+    padding: $space*2 $space;
+  }
+}

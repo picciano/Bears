@@ -1,0 +1,46 @@
+// _variables.scss
+//   NOTE: Variables should be named general to specific
+
+
+// Breakpoints
+// NOTE: When updating make sure to sync with JS variables (/source/js/apps/master/app.js)
+$breakpoint-s: 38em; // *16 = 608
+$breakpoint-m: 57em; // *16 = 912
+$breakpoint-l: 75em; // *16 = 1200
+
+
+// Media Queries
+$S: 'min-width:'+ $breakpoint-s;
+$M: 'min-width:'+ $breakpoint-m;
+$L: 'min-width:'+ $breakpoint-l;
+
+
+// Color Pallete
+$white: #fff;
+$black: #000;
+
+$blue: #011d43;
+
+
+// Typography
+$vertical-rhythm-base: 16; // 16px default browser font size
+$vertical-rhythm: 24;      // 24px vertical rhythm
+
+$font-size-base: 1em; // Use browser default font-size, usually 16px
+
+// font sizes defined in _mixins.scss
+// $font-size-1
+// $font-size-2
+// $font-size-3
+// $font-size-4
+// $font-size-5
+// $font-size-6
+// $font-size-7
+
+
+// Spacing
+$space: ($vertical-rhythm / $vertical-rhythm-base) + 0em; // 24px to follow vertical rhythm
+
+
+// Extra
+$radius: $space /2;
