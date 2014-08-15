@@ -10,8 +10,8 @@ node_modules/
 
 # Ignore generated files from Grunt
 public/css/generated
-public/css/min
-public/js/min
+#public/css/min
+#public/js/min
 
 # vim temp files
 *.swp
